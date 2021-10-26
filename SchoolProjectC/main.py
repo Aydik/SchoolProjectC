@@ -9,10 +9,10 @@ import sqlite3
 class MyWidget(QMainWindow):
     def __init__(self):
         self.open_db()
-        self.load_labels()
         super().__init__()
         QMainWindow.__init__(self)
         uic.loadUi('design.ui', self)
+        self.load_labels()
         QMainWindow.setFixedSize(self, 1000, 700)
         self.setWindowIcon(QIcon('Images/favicon.ico'))
         self.bg1.setStyleSheet("border-image: url('Images/BackGround.png') 0 0 0 0;")
@@ -51,11 +51,11 @@ class MyWidget(QMainWindow):
         self.ex4load()
 
     def load_labels(self):
-        labels = open('labels.txt', 'r').readlines()
-        self.label.setText(labels[0])
-        self.label2.setText(labels[1])
-        self.label3.setText(labels[2])
-        self.label4.setText(labels[3])
+        labels = open('labels.txt', mode='r', encoding='utf8').readlines()
+        self.label.setText(labels[0].strip())
+        self.label2.setText(labels[1].strip())
+        self.label3.setText(labels[2].strip())
+        self.label4.setText(labels[3].strip())
 
     def ex1load(self):
         self.ex1 = []
@@ -189,7 +189,7 @@ class MyWidget(QMainWindow):
 
     def check_name(self):
         name, ok_pressed = QInputDialog.getText(
-             self, "TrenajerC", "Введите ваше имя")
+            self, "TrenajerC", "Введите ваше имя")
         if ok_pressed and name:
             print(name)
 
