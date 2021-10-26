@@ -1,7 +1,7 @@
 import sys
 from random import shuffle
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog
 from PyQt5.QtGui import QIcon
 import sqlite3
 
@@ -9,6 +9,7 @@ import sqlite3
 class MyWidget(QMainWindow):
     def __init__(self):
         self.open_db()
+        self.load_labels()
         super().__init__()
         QMainWindow.__init__(self)
         uic.loadUi('design.ui', self)
@@ -23,6 +24,7 @@ class MyWidget(QMainWindow):
         self.Button2.clicked.connect(self.exi2)
         self.Button3.clicked.connect(self.exi3)
         self.Button4.clicked.connect(self.exi4)
+        self.ButtonCheck.clicked.connect(self.check_name)
         self.i1 = -1
         self.i2 = -1
         self.i3 = -1
@@ -47,6 +49,13 @@ class MyWidget(QMainWindow):
         self.ex2load()
         self.ex3load()
         self.ex4load()
+
+    def load_labels(self):
+        labels = open('labels.txt', 'r').readlines()
+        self.label.setText(labels[0])
+        self.label2.setText(labels[1])
+        self.label3.setText(labels[2])
+        self.label4.setText(labels[3])
 
     def ex1load(self):
         self.ex1 = []
@@ -177,6 +186,12 @@ class MyWidget(QMainWindow):
             self.rand4()
             self.ans4.hide()
             self.Button4.setText("Проверить")
+
+    def check_name(self):
+        name, ok_pressed = QInputDialog.getText(
+             self, "TrenajerC", "Введите ваше имя")
+        if ok_pressed and name:
+            print(name)
 
 
 if __name__ == '__main__':
