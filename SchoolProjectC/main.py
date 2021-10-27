@@ -1,7 +1,7 @@
 import sys
 from random import shuffle
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog
+from PyQt5 import uic, QtWidgets, QtGui
+from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QDialog
 from PyQt5.QtGui import QIcon
 import sqlite3
 
@@ -91,20 +91,32 @@ class MyWidget(QMainWindow):
 
     def rand1(self):
         self.i1 = (self.i1 + 1) % len(self.ex1)
+        if sum(self.AnsK1) != len(self.ex1):
+            while self.AnsK1[self.i1] == 1:
+                self.i1 += 1
         self.ex1L.setText(self.ex1[self.i1][0])
 
     def rand2(self):
         self.i2 = (self.i2 + 1) % len(self.ex2)
+        if sum(self.AnsK2) != len(self.ex2):
+            while self.AnsK2[self.i2] == 1:
+                self.i2 += 1
         self.ex2L.setText(self.ex2[self.i2][0])
         self.textEdit2.setText(self.ex2[self.i2][1])
 
     def rand3(self):
         self.i3 = (self.i3 + 1) % len(self.ex3)
+        if sum(self.AnsK3) != len(self.ex3):
+            while self.AnsK3[self.i3] == 1:
+                self.i3 += 1
         self.ex3L.setText(self.ex3[self.i3][0])
         self.textEdit3.setText(self.ex3[self.i3][1])
 
     def rand4(self):
         self.i4 = (self.i4 + 1) % len(self.ex4)
+        if sum(self.AnsK4) != len(self.ex4):
+            while self.AnsK4[self.i4] == 1:
+                self.i4 += 1
         self.ex4L.setText(self.ex4[self.i4][0])
         self.textEdit4.setText("")
 
@@ -191,7 +203,49 @@ class MyWidget(QMainWindow):
         name, ok_pressed = QInputDialog.getText(
             self, "TrenajerC", "Введите ваше имя")
         if ok_pressed and name:
-            print(name)
+            self.result(name)
+
+    def result(self, name):
+        self.resultWindow = QDialog()
+        self.resultWindow.setFixedSize(500, 325)
+        self.resultWindow.setWindowIcon(QIcon('Images/favicon.ico'))
+        self.resultWindow.setWindowTitle('Результаты')
+        self.resultWindow.setFont(QtGui.QFont("MS Shell Dlg 2", 14))
+        self.labelName = QtWidgets.QLabel(self.resultWindow)
+        self.labelName.move(20, 30)
+        self.labelName.resize(380, 30)
+        self.labelName.setText("Имя: " + name)
+        self.labelEx1 = QtWidgets.QLabel(self.resultWindow)
+        self.labelEx1.move(20, 80)
+        self.labelEx1.resize(230, 30)
+        self.labelEx1.setText("Задание 1: " + str(sum(self.AnsK1))
+                              + " / " + str(len(self.AnsK1)))
+        self.labelEx2 = QtWidgets.QLabel(self.resultWindow)
+        self.labelEx2.move(20, 130)
+        self.labelEx2.resize(230, 30)
+        self.labelEx2.setText("Задание 2: " + str(sum(self.AnsK2))
+                              + " / " + str(len(self.AnsK2)))
+        self.labelEx3 = QtWidgets.QLabel(self.resultWindow)
+        self.labelEx3.move(20, 180)
+        self.labelEx3.resize(230, 30)
+        self.labelEx3.setText("Задание 3: " + str(sum(self.AnsK3))
+                              + " / " + str(len(self.AnsK3)))
+        self.labelEx4 = QtWidgets.QLabel(self.resultWindow)
+        self.labelEx4.move(20, 230)
+        self.labelEx4.resize(230, 30)
+        self.labelEx4.setText("Задание 4: " + str(sum(self.AnsK4))
+                              + " / " + str(len(self.AnsK4)))
+        self.summa = sum(self.AnsK1) + sum(self.AnsK2) + sum(self.AnsK3) + sum(self.AnsK4)
+        self.lenght = len(self.AnsK1) + len(self.AnsK2) + len(self.AnsK3) + len(self.AnsK4)
+        self.labelTotal = QtWidgets.QLabel(self.resultWindow)
+        self.labelTotal.move(270, 280)
+        self.labelTotal.resize(210, 30)
+        self.labelTotal.setText("Итого: " + str(self.summa) + " / " + str(self.lenght))
+        self.stamp = QtWidgets.QWidget(self.resultWindow)
+        self.stamp.move(260, 80)
+        self.stamp.resize(180, 180)
+        self.stamp.setStyleSheet("border-image: url('Images/stamp.png') 0 0 0 0;")
+        self.resultWindow.show()
 
 
 if __name__ == '__main__':

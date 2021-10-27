@@ -1,0 +1,7 @@
+ottoman, 388, 4
+plate, 183, 15
+cup, 304, 15
+tureen, 238, 15
+candle holder, 50, 43
+table, 238, 45
+couch, 96, 2
