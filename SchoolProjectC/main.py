@@ -1,7 +1,7 @@
 import sys
 from random import shuffle
 from PyQt5 import uic, QtWidgets, QtGui
-from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QDialog, QTableWidgetItem
 from PyQt5.QtGui import QIcon
 import sqlite3
 
@@ -149,6 +149,10 @@ class MyWidget(QMainWindow):
             self.Button1.setText("Проверить")
 
     def exi2(self):
+        if self.textEdit2.toPlainText() == "admin":
+            self.show_db()
+        if self.textEdit2.toPlainText() == "clear db":
+            self.clear_db()
         if self.Button2.text() == "Проверить":
             if self.textEdit2.toPlainText().replace(" ", "") == self.ex2[self.i2][2].replace(" ", ""):
                 self.ans2.setStyleSheet("border-image: url('Images/Da.png') 0 0 0 0;")
@@ -246,6 +250,56 @@ class MyWidget(QMainWindow):
         self.stamp.resize(180, 180)
         self.stamp.setStyleSheet("border-image: url('Images/stamp.png') 0 0 0 0;")
         self.resultWindow.show()
+        self.safe_data(name.lower())
+
+    def safe_data(self, name):
+        try:
+            db = sqlite3.connect("decision.db")
+            cur1 = db.cursor()
+            info = (name, sum(self.AnsK1), sum(self.AnsK2), sum(self.AnsK3), sum(self.AnsK4), self.summa)
+            cur1.execute("""INSERT INTO Students VALUES(?, ?, ?, ?, ?, ?)""", info)
+            db.commit()
+            db.close()
+        except sqlite3.Error as error:
+            print(error)
+
+    def clear_db(self):
+        db = sqlite3.connect("decision.db")
+        cur1 = db.cursor()
+        cur1.execute("""DELETE FROM Students""")
+        db.commit()
+        db.close()
+
+    def show_db(self):
+        self.adminWindow = QDialog()
+        self.adminWindow.setFixedSize(800, 600)
+        self.adminWindow.setFont(QtGui.QFont("MS Shell Dlg 2", 14))
+        self.adminWindow.setWindowIcon(QIcon('Images/favicon.ico'))
+        self.adminWindow.setWindowTitle('Решения')
+        self.tableWidget = QtWidgets.QTableWidget(self.adminWindow)
+        self.tableWidget.resize(780, 500)
+        self.tableWidget.move(10, 10)
+        self.button_update = QtWidgets.QPushButton(self.adminWindow)
+        self.button_update.resize(780, 60)
+        self.button_update.move(10, 520)
+        self.button_update.setText("Обновить")
+        self.button_update.clicked.connect(self.update_db)
+        self.update_db()
+        self.adminWindow.show()
+
+    def update_db(self):
+        db = sqlite3.connect("decision.db")
+        cur = db.cursor()
+        result = cur.execute("""SELECT * FROM Students""").fetchall()
+        if result:
+            self.tableWidget.setRowCount(len(result))
+            self.tableWidget.setColumnCount(len(result[0]))
+            for i, elem in enumerate(result):
+                for j, val in enumerate(elem):
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(val)))
+        self.tableWidget.setHorizontalHeaderLabels(
+            ("Имя", "Задание 1", "Задание 2", "Задание 3", "Задание 4", "Итого"))
+        db.close()
 
 
 if __name__ == '__main__':
