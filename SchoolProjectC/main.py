@@ -257,7 +257,16 @@ class MyWidget(QMainWindow):
             db = sqlite3.connect("decision.db")
             cur1 = db.cursor()
             info = (name, sum(self.AnsK1), sum(self.AnsK2), sum(self.AnsK3), sum(self.AnsK4), self.summa)
-            cur1.execute("""INSERT INTO Students VALUES(?, ?, ?, ?, ?, ?)""", info)
+            update = cur1.execute("""SELECT title FROM Students WHERE title = ?""", (name,)).fetchall()
+            print(update)
+            if not update:
+                cur1.execute("""INSERT INTO Students VALUES(?, ?, ?, ?, ?, ?)""", info)
+            else:
+                cur1.execute("""UPDATE Students set Ex1 = ? WHERE title = ?""", (sum(self.AnsK1), name,))
+                cur1.execute("""UPDATE Students set Ex2 = ? WHERE title = ?""", (sum(self.AnsK2), name,))
+                cur1.execute("""UPDATE Students set Ex3 = ? WHERE title = ?""", (sum(self.AnsK3), name,))
+                cur1.execute("""UPDATE Students set Ex4 = ? WHERE title = ?""", (sum(self.AnsK4), name,))
+                cur1.execute("""UPDATE Students set total = ? WHERE title = ?""", (self.summa, name,))
             db.commit()
             db.close()
         except sqlite3.Error as error:
