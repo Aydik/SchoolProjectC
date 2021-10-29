@@ -93,14 +93,14 @@ class MyWidget(QMainWindow):
         self.i1 = (self.i1 + 1) % len(self.ex1)
         if sum(self.AnsK1) != len(self.ex1):
             while self.AnsK1[self.i1] == 1:
-                self.i1 += 1
+                self.i1 = (self.i1 + 1) % len(self.ex1)
         self.ex1L.setText(self.ex1[self.i1][0])
 
     def rand2(self):
         self.i2 = (self.i2 + 1) % len(self.ex2)
         if sum(self.AnsK2) != len(self.ex2):
             while self.AnsK2[self.i2] == 1:
-                self.i2 += 1
+                self.i2 = (self.i2 + 1) % len(self.ex2)
         self.ex2L.setText(self.ex2[self.i2][0])
         self.textEdit2.setText(self.ex2[self.i2][1])
 
@@ -108,7 +108,7 @@ class MyWidget(QMainWindow):
         self.i3 = (self.i3 + 1) % len(self.ex3)
         if sum(self.AnsK3) != len(self.ex3):
             while self.AnsK3[self.i3] == 1:
-                self.i3 += 1
+                self.i3 = (self.i3 + 1) % len(self.ex3)
         self.ex3L.setText(self.ex3[self.i3][0])
         self.textEdit3.setText(self.ex3[self.i3][1])
 
@@ -116,7 +116,7 @@ class MyWidget(QMainWindow):
         self.i4 = (self.i4 + 1) % len(self.ex4)
         if sum(self.AnsK4) != len(self.ex4):
             while self.AnsK4[self.i4] == 1:
-                self.i4 += 1
+                self.i4 = (self.i4 + 1) % len(self.ex4)
         self.ex4L.setText(self.ex4[self.i4][0])
         self.textEdit4.setText("")
 
