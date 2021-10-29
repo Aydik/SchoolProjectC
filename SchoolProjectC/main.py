@@ -258,7 +258,6 @@ class MyWidget(QMainWindow):
             cur1 = db.cursor()
             info = (name, sum(self.AnsK1), sum(self.AnsK2), sum(self.AnsK3), sum(self.AnsK4), self.summa)
             update = cur1.execute("""SELECT title FROM Students WHERE title = ?""", (name,)).fetchall()
-            print(update)
             if not update:
                 cur1.execute("""INSERT INTO Students VALUES(?, ?, ?, ?, ?, ?)""", info)
             else:
