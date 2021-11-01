@@ -42,7 +42,7 @@ class MyWidget(QMainWindow):
         self.rand3()
         self.rand4()
 
-    def open_db(self):
+    def open_db(self):  # открывается база данных с заданиями
         con = sqlite3.connect("Exis.db")
         self.cur = con.cursor()
         self.ex1load()
@@ -50,20 +50,20 @@ class MyWidget(QMainWindow):
         self.ex3load()
         self.ex4load()
 
-    def load_labels(self):
+    def load_labels(self):  # открывается txt с заголовками
         labels = open('labels.txt', mode='r', encoding='utf8').readlines()
         self.label.setText(labels[0].strip())
         self.label2.setText(labels[1].strip())
         self.label3.setText(labels[2].strip())
         self.label4.setText(labels[3].strip())
 
-    def ex1load(self):
+    def ex1load(self):  # загружается первое задание из базы данных
         self.ex1 = []
         result = self.cur.execute("""SELECT title, ans FROM Exi1""").fetchall()
         for i in result:
             self.ex1.append(i)
 
-    def ex2load(self):
+    def ex2load(self):  # загружается второе задание из базы данных
         self.ex2 = []
         result = self.cur.execute("""SELECT title, code, ans FROM Exi2""").fetchall()
         for i in result:
@@ -72,7 +72,7 @@ class MyWidget(QMainWindow):
             f[2] = "\n".join(f[2].split("\\n"))
             self.ex2.append(f)
 
-    def ex3load(self):
+    def ex3load(self):  # загружается третье задание из базы данных
         self.ex3 = []
         result = self.cur.execute("""SELECT title, code, ans FROM Exi3""").fetchall()
         for i in result:
@@ -81,7 +81,7 @@ class MyWidget(QMainWindow):
             f[2] = "\n".join(f[2].split("\\n"))
             self.ex3.append(f)
 
-    def ex4load(self):
+    def ex4load(self):  # загружается четвертое задание из базы данных
         self.ex4 = []
         result = self.cur.execute("""SELECT code, ans FROM Exi4""").fetchall()
         for i in result:
@@ -89,14 +89,14 @@ class MyWidget(QMainWindow):
             f[0] = "\n".join(f[0].split("\\n"))
             self.ex4.append(f)
 
-    def rand1(self):
+    def rand1(self):  # переход к следующему заданию первого типа
         self.i1 = (self.i1 + 1) % len(self.ex1)
         if sum(self.AnsK1) != len(self.ex1):
             while self.AnsK1[self.i1] == 1:
                 self.i1 = (self.i1 + 1) % len(self.ex1)
         self.ex1L.setText(self.ex1[self.i1][0])
 
-    def rand2(self):
+    def rand2(self):  # переход к следующему заданию второго типа
         self.i2 = (self.i2 + 1) % len(self.ex2)
         if sum(self.AnsK2) != len(self.ex2):
             while self.AnsK2[self.i2] == 1:
@@ -104,7 +104,7 @@ class MyWidget(QMainWindow):
         self.ex2L.setText(self.ex2[self.i2][0])
         self.textEdit2.setText(self.ex2[self.i2][1])
 
-    def rand3(self):
+    def rand3(self):  # переход к следующему заданию третьего типа
         self.i3 = (self.i3 + 1) % len(self.ex3)
         if sum(self.AnsK3) != len(self.ex3):
             while self.AnsK3[self.i3] == 1:
@@ -112,7 +112,7 @@ class MyWidget(QMainWindow):
         self.ex3L.setText(self.ex3[self.i3][0])
         self.textEdit3.setText(self.ex3[self.i3][1])
 
-    def rand4(self):
+    def rand4(self):  # переход к следующему заданию четвертого типа
         self.i4 = (self.i4 + 1) % len(self.ex4)
         if sum(self.AnsK4) != len(self.ex4):
             while self.AnsK4[self.i4] == 1:
@@ -120,7 +120,7 @@ class MyWidget(QMainWindow):
         self.ex4L.setText(self.ex4[self.i4][0])
         self.textEdit4.setText("")
 
-    def exi1(self):
+    def exi1(self):  # проверка первого задания
         if self.Button1.text() == "Проверить":
             ans = -1
             if self.radioButton.isChecked():
@@ -148,7 +148,7 @@ class MyWidget(QMainWindow):
             self.radioButton2.setAutoExclusive(True)
             self.Button1.setText("Проверить")
 
-    def exi2(self):
+    def exi2(self):  # проверка второго задания
         if self.textEdit2.toPlainText() == "admin":
             self.show_db()
         if self.textEdit2.toPlainText() == "clear db":
@@ -169,7 +169,7 @@ class MyWidget(QMainWindow):
             self.ans2.hide()
             self.Button2.setText("Проверить")
 
-    def exi3(self):
+    def exi3(self):  # проверка третьего задания
         if self.Button3.text() == "Проверить":
             if self.textEdit3.toPlainText().replace(" ", "") == self.ex3[self.i3][2].replace(" ", ""):
                 self.ans3.setStyleSheet("border-image: url('Images/Da.png') 0 0 0 0;")
@@ -186,7 +186,7 @@ class MyWidget(QMainWindow):
             self.ans3.hide()
             self.Button3.setText("Проверить")
 
-    def exi4(self):
+    def exi4(self):  # проверка четвертого задания
         if self.Button4.text() == "Проверить":
             if self.textEdit4.toPlainText() == str(self.ex4[self.i4][1]):
                 self.ans4.setStyleSheet("border-image: url('Images/Da.png') 0 0 0 0;")
@@ -203,13 +203,13 @@ class MyWidget(QMainWindow):
             self.ans4.hide()
             self.Button4.setText("Проверить")
 
-    def check_name(self):
+    def check_name(self):  # открыть диалоговое окно с вводом имени
         name, ok_pressed = QInputDialog.getText(
             self, "TrenajerC", "Введите ваше имя")
         if ok_pressed and name:
             self.result(name)
 
-    def result(self, name):
+    def result(self, name):  # открыть окно с выводом результатов
         self.resultWindow = QDialog()
         self.resultWindow.setFixedSize(500, 325)
         self.resultWindow.setWindowIcon(QIcon('Images/favicon.ico'))
@@ -252,7 +252,7 @@ class MyWidget(QMainWindow):
         self.resultWindow.show()
         self.safe_data(name.lower())
 
-    def safe_data(self, name):
+    def safe_data(self, name):  # записать в базу данных информацию
         try:
             db = sqlite3.connect("decision.db")
             cur1 = db.cursor()
@@ -271,14 +271,14 @@ class MyWidget(QMainWindow):
         except sqlite3.Error as error:
             print(error)
 
-    def clear_db(self):
+    def clear_db(self):  # очистить базу данных об учениках
         db = sqlite3.connect("decision.db")
         cur1 = db.cursor()
         cur1.execute("""DELETE FROM Students""")
         db.commit()
         db.close()
 
-    def show_db(self):
+    def show_db(self):  # открыть окно с вожмозностью просмотра бд
         self.adminWindow = QDialog()
         self.adminWindow.setFixedSize(800, 600)
         self.adminWindow.setFont(QtGui.QFont("MS Shell Dlg 2", 14))
@@ -295,7 +295,7 @@ class MyWidget(QMainWindow):
         self.update_db()
         self.adminWindow.show()
 
-    def update_db(self):
+    def update_db(self):  # обновить окно с  просмотра бд
         db = sqlite3.connect("decision.db")
         cur = db.cursor()
         result = cur.execute("""SELECT * FROM Students""").fetchall()
