@@ -1,8 +1,0 @@
-chair 94
-couch 100
-table 4
-jug 84
-saucer 12
-Japanese paper umbrella 7
-ladle 18
-cup 10

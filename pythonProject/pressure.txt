@@ -1,5 +1,0 @@
-clear 760 780
-partly cloudy 750 759
-cloudy 740 749
-rain 730 739
-storm 710 729
