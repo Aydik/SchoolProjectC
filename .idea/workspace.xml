@@ -28,7 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SchoolProjectC" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -77,6 +77,9 @@
       <workItem from="1636396499335" duration="9000" />
       <workItem from="1636473947963" duration="976000" />
       <workItem from="1636474977414" duration="11000" />
+      <workItem from="1636545069402" duration="67000" />
+      <workItem from="1636545304932" duration="8000" />
+      <workItem from="1636548759492" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="Полность готово">
       <created>1636392055716</created>
@@ -92,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636396424084</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Полность готово">
+      <created>1636545123342</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636545123342</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
