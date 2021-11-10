@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c48f6548-d9fe-4c00-b50b-6223ea4bbf13" name="Changes" comment="" />
+    <list default="true" id="c48f6548-d9fe-4c00-b50b-6223ea4bbf13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,6 +73,10 @@
       <workItem from="1636313314508" duration="264000" />
       <workItem from="1636391998096" duration="85000" />
       <workItem from="1636392158537" duration="44000" />
+      <workItem from="1636396390660" duration="36000" />
+      <workItem from="1636396499335" duration="9000" />
+      <workItem from="1636473947963" duration="976000" />
+      <workItem from="1636474977414" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="Полность готово">
       <created>1636392055716</created>
@@ -72,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636392055716</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Полность готово">
+      <created>1636396424084</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636396424084</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,7 +103,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Полность готово" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SchoolProjectC$main.coverage" NAME="main Coverage Results" MODIFIED="1636392007950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SchoolProjectC" />
+    <SUITE FILE_PATH="coverage/SchoolProjectC$main.coverage" NAME="main Coverage Results" MODIFIED="1636474980116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SchoolProjectC" />
     <SUITE FILE_PATH="coverage/SchoolProjectC$Python310.coverage" NAME="main Coverage Results" MODIFIED="1636313209016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SchoolProjectC" />
   </component>
 </project>
